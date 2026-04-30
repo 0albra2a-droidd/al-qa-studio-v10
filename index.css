@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.1450 0 0);
+  --primary: oklch(0.2050 0 0);
+  --primary-foreground: oklch(0.9850 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.1450 0 0);
+  --border: oklch(0.9220 0 0);
+  --radius: 0.75rem;
+  --font-sans: 'Tajawal', sans-serif;
+}
+
+.dark {
+  --background: oklch(0.1450 0 0);
+  --foreground: oklch(0.9850 0 0);
+  --primary: oklch(0.9850 0 0);
+  --primary-foreground: oklch(0.1450 0 0);
+  --card: oklch(0.2 0 0);
+  --card-foreground: oklch(0.9850 0 0);
+  --border: oklch(0.3 0 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  font-family: 'Tajawal', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Tajawal', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.6 0 0 / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0 0 / 0.5);
+}
+
+.glass-card {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: oklch(1 0 0 / 0.15);
+  border: 1px solid oklch(0.9220 0 0 / 0.20);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1),
+    0 0 0 1px rgb(0 0 0 / 0.05);
+}
+
+.dark .glass-card {
+  background: oklch(0.2 0 0 / 0.15);
+  border-color: oklch(0.3 0 0 / 0.20);
+}
+
+@layer utilities {
+  .text-shadow-ad {
+    text-shadow:
+      1px 1px 3px rgba(0,0,0,0.9),
+      -1px -1px 3px rgba(0,0,0,0.9),
+      1px -1px 3px rgba(0,0,0,0.9),
+      -1px 1px 3px rgba(0,0,0,0.9),
+      0 2px 8px rgba(0,0,0,0.8);
+  }
+}

@@ -246,7 +246,7 @@ const AdCanvas = forwardRef<HTMLDivElement, AdCanvasProps>(({ data, dominantColo
             textShadow: '1px 1px 3px #000, -1px -1px 3px #000, 1px -1px 3px #000, -1px 1px 3px #000, 0 2px 8px rgba(0,0,0,0.9)',
           }}
         >
-          القحطاني | 0501234567
+            "القاضي | 778945941"
         </span>
       </div>
     </div>

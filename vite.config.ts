@@ -7,18 +7,27 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico'],
       manifest: {
-        name: 'Al-Qa Studio V10.1.0',
-        short_name: 'القح ستوديو',
-        description: 'استوديو تصميم الإعلانات الاحترافية',
-        theme_color: '#000000',
-        background_color: '#ffffff',
+        name: 'القاضي ستوديو V10.1.0',
+        short_name: 'القاضي ستوديو',
+        description: 'استوديو تصميم إعلانات المناديب الطبية',
+        theme_color: '#D4AF37',
+        background_color: '#000000',
         display: 'standalone',
         lang: 'ar',
         dir: 'rtl',
         icons: [
-          { src: '/vite.svg', sizes: '192x192', type: 'image/svg+xml' },
-          { src: '/vite.svg', sizes: '512x512', type: 'image/svg+xml' }
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
         ]
       }
     })

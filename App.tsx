@@ -1,12 +1,11 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { Download, Trash2, Wand2, ImagePlus } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
-import Header from './components/Header';
-import ImageUploader from './components/ImageUploader';
-import AdCanvas from './components/AdCanvas';
-import ControlPanel from './components/ControlPanel';
-import type { AdData } from './components/AdCanvas';
-import { isDarkBackground } from './lib/utils';
+import Header from './Header';
+import ImageUploader from './ImageUploader';
+import AdCanvas from './AdCanvas';
+import ControlPanel from './ControlPanel';
+import type { AdData } from './AdCanvas';
 
 const DEFAULT_AD: AdData = {
   productImage: null,
@@ -47,7 +46,7 @@ export default function App() {
   }, [darkMode]);
 
   const handleAdChange = useCallback((updates: Partial<AdData>) => {
-    setAdData(prev => ({ ...prev, ...updates }));
+    setAdData(prev => ({...prev,...updates }));
   }, []);
 
   const extractDominantColor = async (imageUrl: string) => {
@@ -63,8 +62,7 @@ export default function App() {
       });
       const color = ct.getColor(img) as [number, number, number];
       setDominantColor(color);
-      const dark = isDarkBackground(color[0], color[1], color[2]);
-      handleAdChange({ textColor: dark ? '#ffffff' : '#000000' });
+      handleAdChange({ textColor: '#ffffff' });
     } catch {
       // ignore color extraction errors
     }
@@ -126,14 +124,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[oklch(0.97_0_0)] dark:bg-[oklch(0.1_0_0)] font-[Tajawal,sans-serif] transition-colors duration-300">
-      <Header darkMode={darkMode} onToggleDark={() => setDarkMode(d => !d)} />
+      <Header darkMode={darkMode} onToggleDark={() => setDarkMode(d =>!d)} />
 
       <main className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex flex-col lg:flex-row gap-6">
 
-          {/* Left column: Controls */}
           <aside className="w-full lg:w-80 xl:w-96 flex flex-col gap-4 order-2 lg:order-1">
-            {/* Image Upload */}
             <div className="glass-card rounded-xl p-4">
               <div className="flex items-center gap-2 mb-3">
                 <ImagePlus className="w-4 h-4 text-amber-500" />
@@ -154,7 +150,7 @@ export default function App() {
                       className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-gradient-to-l from-sky-500 to-blue-600 text-white text-xs font-bold disabled:opacity-60 hover:from-sky-600 hover:to-blue-700 transition-all shadow"
                     >
                       <Wand2 className="w-3.5 h-3.5" />
-                      {removingBg ? 'جاري الإزالة...' : 'إزالة الخلفية'}
+                      {removingBg? 'جاري الإزالة...' : 'إزالة الخلفية'}
                     </button>
                     <button
                       onClick={() => handleAdChange({ productImage: null })}
@@ -187,11 +183,9 @@ export default function App() {
               </div>
             </div>
 
-            {/* Controls */}
             <ControlPanel data={adData} onChange={handleAdChange} />
           </aside>
 
-          {/* Right column: Preview */}
           <section className="flex-1 flex flex-col gap-4 order-1 lg:order-2">
             <div className="glass-card rounded-2xl p-4">
               <div className="flex items-center justify-between mb-4">
@@ -210,12 +204,11 @@ export default function App() {
                     className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-l from-amber-500 to-orange-500 text-white shadow hover:from-amber-600 hover:to-orange-600 disabled:opacity-60 transition-all"
                   >
                     <Download className="w-3 h-3" />
-                    {downloading ? 'جارٍ التحميل...' : 'تحميل الإعلان'}
+                    {downloading? 'جارٍ التحميل...' : 'تحميل الإعلان'}
                   </button>
                 </div>
               </div>
 
-              {/* Canvas container */}
               <div className="w-full max-w-lg mx-auto rounded-xl overflow-hidden shadow-2xl">
                 <AdCanvas
                   ref={canvasRef}
@@ -224,13 +217,11 @@ export default function App() {
                 />
               </div>
 
-              {/* Size info */}
               <p className="text-center text-xs text-[oklch(0.55_0_0)] dark:text-[oklch(0.5_0_0)] mt-3">
                 مربع 1:1 — مناسب لإنستغرام وسناب شات
               </p>
             </div>
 
-            {/* Tips */}
             <div className="glass-card rounded-xl p-4">
               <h3 className="text-xs font-bold text-[oklch(0.3_0_0)] dark:text-[oklch(0.75_0_0)] mb-2">نصائح احترافية</h3>
               <ul className="flex flex-col gap-1.5">
@@ -253,7 +244,6 @@ export default function App() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="mt-auto border-t border-[oklch(0.922_0_0/0.3)] dark:border-[oklch(0.3_0_0/0.3)] py-4 px-4 text-center">
         <p className="text-xs text-[oklch(0.55_0_0)] dark:text-[oklch(0.45_0_0)]">
           القحطاني ستوديو V10.1.0 — Bolt Pro Edition — جميع الحقوق محفوظة
